@@ -75,7 +75,7 @@ namespace BLL
             GuestSM hm = new GuestSM();
             hm.GuestId = Convert.ToInt32(human.GuestId);
             hm.Name = human.Name;
-            hm.Phone =Convert.ToInt32(human.Phone);
+            hm.Phone =Convert.ToUInt32(human.Phone);
             hm.Active = Convert.ToBoolean(human.Active);
             hm.Street1 = human.Street1;
             hm.Street2 = human.Street2;

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary2
+namespace BLL
 {
-    public class Class1
+    public interface IHashing
     {
+        string GetHash(string statement);
     }
 }

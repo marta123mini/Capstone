@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone", "Capstone\Capsto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone.Tests", "Capstone.Tests\Capstone.Tests.csproj", "{205BDF9C-D6B0-4C5B-81F4-649ABB7C2BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "ClassLibrary1\BLL.csproj", "{7F00BE06-FD8D-4B80-9888-8B060F827C49}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{58140E0C-B86A-4FAE-B96B-B46EAEF8C324}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationLogger", "ApplicationLogger\ApplicationLogger.csproj", "{29027B1C-CCB1-47B7-88EC-06DF032C0688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{CAA4D6ED-E332-4B7B-B789-EBF9E96935FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,6 @@ Global
 		{205BDF9C-D6B0-4C5B-81F4-649ABB7C2BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{205BDF9C-D6B0-4C5B-81F4-649ABB7C2BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205BDF9C-D6B0-4C5B-81F4-649ABB7C2BF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F00BE06-FD8D-4B80-9888-8B060F827C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F00BE06-FD8D-4B80-9888-8B060F827C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F00BE06-FD8D-4B80-9888-8B060F827C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F00BE06-FD8D-4B80-9888-8B060F827C49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58140E0C-B86A-4FAE-B96B-B46EAEF8C324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58140E0C-B86A-4FAE-B96B-B46EAEF8C324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58140E0C-B86A-4FAE-B96B-B46EAEF8C324}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{29027B1C-CCB1-47B7-88EC-06DF032C0688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29027B1C-CCB1-47B7-88EC-06DF032C0688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29027B1C-CCB1-47B7-88EC-06DF032C0688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAA4D6ED-E332-4B7B-B789-EBF9E96935FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA4D6ED-E332-4B7B-B789-EBF9E96935FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA4D6ED-E332-4B7B-B789-EBF9E96935FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA4D6ED-E332-4B7B-B789-EBF9E96935FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-   public class GuestSM
+    public class UserSM
     {
-        public int GuestId { get; set; }
-        public string Name { get; set; }
-        public uint Phone { get; set; }
-        public bool Active { get; set; }
+        public int UserId { get; set; } 
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public bool User { get; set; }
+        public bool Poweruser { get; set; }
+        public bool Admin { get; set; }
         public string Street1 { get; set; }
         public string Street2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int Zipcode { get; set; }
     }
-
 }
