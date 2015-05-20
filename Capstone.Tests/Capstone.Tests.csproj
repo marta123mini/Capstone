@@ -93,9 +93,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Capstone\GuestList.csproj">
+    <ProjectReference Include="..\Capstone\Capstone.csproj">
       <Project>{8FB2214D-C2EB-48E6-ACEA-A2F5A7E71EAF}</Project>
-      <Name>GuestList</Name>
+      <Name>Capstone</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

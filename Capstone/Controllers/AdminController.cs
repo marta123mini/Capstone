@@ -13,18 +13,17 @@ namespace Capstone.Controllers
     public class AdminController : Controller
     {
         public IUserLogic adminLogic = new UserLogic(new UserDAO(new LoggerIO()), new SQLDAO(), new LoggerIO(), new Hashing());
-        public UserVM adminModel = new UserVM();
         // GET: Admin
         public ActionResult Index()
         {
-            List<UserVM> users = adminModel.Map(adminLogic.GetUsers());
+            List<UserVM> users = UserVM.Map(adminLogic.GetUsers());
             return View(users);
         }
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
-            UserVM user = adminModel.Map(adminLogic.GetUserById(id));
+            UserVM user = UserVM.Map(adminLogic.GetUserById(id));
             ViewBag.UserId = user.userId;
             ViewBag.UserName = user.username;
             ViewBag.Admin = user.admin;
@@ -50,7 +49,7 @@ namespace Capstone.Controllers
         {
             try
             {
-                adminLogic.CreateUser(adminModel.Map(user));    
+                adminLogic.CreateUser(UserVM.Map(user));    
                 return RedirectToAction("Index","Admin");
             }
             catch
@@ -62,7 +61,7 @@ namespace Capstone.Controllers
         // GET: Admin/Edit/5
         public ActionResult Edit(int id)
         {
-            UserVM user = adminModel.Map(adminLogic.GetUserById(id));
+            UserVM user = UserVM.Map(adminLogic.GetUserById(id));
             return View(user);
         }
 
@@ -73,8 +72,8 @@ namespace Capstone.Controllers
             try
             {
                 user.userId = id;
-                user.password = adminModel.Map(adminLogic.GetUserById(id)).password;
-                adminLogic.UpdateUser(adminModel.Map(user));
+                user.password = UserVM.Map(adminLogic.GetUserById(id)).password;
+                adminLogic.UpdateUser(UserVM.Map(user));
                 return RedirectToAction("Index");
             }
             catch
@@ -86,7 +85,7 @@ namespace Capstone.Controllers
         // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {
-            UserVM user = adminModel.Map(adminLogic.GetUserById(id));
+            UserVM user = UserVM.Map(adminLogic.GetUserById(id));
             return View();
         }
 
@@ -97,7 +96,7 @@ namespace Capstone.Controllers
             try
             {
                 adminLogic.DeleteUserById(id);
-                return RedirectToAction("Index","Admin");
+                return RedirectToAction("Index","Ad");
             }
             catch
             {
