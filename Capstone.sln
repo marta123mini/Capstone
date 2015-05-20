@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Web
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone", "Capstone\Capstone.csproj", "{8FB2214D-C2EB-48E6-ACEA-A2F5A7E71EAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestList", "Capstone\GuestList.csproj", "{8FB2214D-C2EB-48E6-ACEA-A2F5A7E71EAF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone.Tests", "Capstone.Tests\Capstone.Tests.csproj", "{205BDF9C-D6B0-4C5B-81F4-649ABB7C2BF4}"
 EndProject
