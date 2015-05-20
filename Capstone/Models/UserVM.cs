@@ -26,6 +26,8 @@ namespace Capstone.Models
         public string state { get; set; }
         [Range(7, int.MaxValue, ErrorMessage = "Please enter valid zipcode")]
         public int zipcode { get; set; }
+        
+        
         public UserSM Map(UserVM human) 
      {
             UserSM hm = new UserSM();
@@ -46,9 +48,12 @@ namespace Capstone.Models
         public UserVM Map(UserSM human) 
         {
             UserVM hm = new UserVM();
-            hm.UserId = human.UserId;
-            hm.name = human.Name;
-            hm.phone = human.Phone;
+            hm.userId = human.UserId;
+            hm.username = human.Username;
+            hm.password = human.Password;
+            hm.user = human.User;
+            hm.poweruser = human.Poweruser;
+            hm.admin = human.Admin;
             hm.street1 = human.Street1;
             hm.street2 = human.Street2;
             hm.city = human.City;
