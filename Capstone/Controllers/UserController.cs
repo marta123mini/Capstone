@@ -1,26 +1,19 @@
-﻿using System;
+﻿using ApplicationLogger;
+using BLL;
+using DAL;
+using Capstone.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Capstone.Controllers
+namespace HelpConsciousness.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
+        public IUserLogic userLogic = new UserLogic(new UserDAO(new LoggerIO()), new SQLDAO(), new LoggerIO(), new Hashing());
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: User/Create
         public ActionResult Create()
         {
             return View();
@@ -28,62 +21,63 @@ namespace Capstone.Controllers
 
         // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(UserVM user)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    userLogic.CreateUser((UserVM.Map(user)));
+                    return RedirectToAction("Login");
+                }
+                return View(user);
             }
-            catch
+            catch (Exception v)
             {
                 return View();
             }
         }
+        // GET: User/Login
 
-        // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Login()
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: User/Login
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Login(UserVM user)
         {
-            try
+            UserVM tempUser = UserVM.Map(userLogic.GetUser(UserVM.Map(user)));
+            if (userLogic.Login(UserVM.Map(tempUser)))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                Session["userId"] = tempUser.userId;
+                Session["username"] = tempUser.username;
+                Session["user"] = tempUser.user;
+                Session["poweruser"] = tempUser.poweruser;
+                Session["admin"] = tempUser.admin;
+                ViewBag.User = tempUser.username;
+                if (tempUser.user == true)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (tempUser.poweruser == true)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (tempUser.admin == true)
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: User/Delete/5
-        public ActionResult Delete(int id)
-        {
             return View();
         }
 
-        // POST: User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // GET: User/Login
+        public ActionResult LogOut()
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            Session["userId"] = null;
+            return RedirectToAction("Welcome", "Home");
         }
     }
 }

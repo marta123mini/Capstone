@@ -18,6 +18,21 @@ namespace UnitUserLogicTest
               Street1="321 Azalea Ln.",Street2="apt0", City="Reidsville", State="GA.", Zipcode=30453}
         };
         [TestMethod]
+        public void TestGetUser()
+        {
+            MockRepository mocks = new MockRepository();
+            IUserLogic logic = mocks.Stub<IUserLogic>();
+            UserSM user1 = new UserSM();
+            using (mocks.Record())
+            {
+                SetupResult.For(logic.GetUser(user1)).Return(user1);
+            }
+            //Act
+            UserSM user2 = logic.GetUser(user1);
+            //Assert
+            Assert.AreEqual(user1, user2);
+        }
+        [TestMethod]
         public void TestGetUsers()
         {
             //Arange
@@ -33,10 +48,56 @@ namespace UnitUserLogicTest
             Assert.AreEqual(MockUser.Count, users.Count);
         }
         [TestMethod]
+        public void TestCheckUsername()
+        {
+            //Arange
+            MockRepository mocks = new MockRepository();
+            IUserLogic logic = mocks.Stub<IUserLogic>();
+            string username1 = "meowgurl123";
+            using (mocks.Record())
+            {
+                SetupResult.For(logic.CheckUsername(username1)).Return(true);
+            }
+            //Act
+            bool value = logic.CheckUsername(username1);
+            //Assert
+            Assert.AreEqual(true, value);
+        }
+        [TestMethod]
+        public void TestLogin()
+        {
+            //Arange
+            MockRepository mocks = new MockRepository();
+            IUserLogic logic = mocks.Stub<IUserLogic>();
+            UserSM user1 = new UserSM();
+            using (mocks.Record())
+            {
+                SetupResult.For(logic.Login(user1)).Return(true);
+            }
+            //Act
+            bool value = logic.Login(user1);
+            //Assert
+            Assert.AreEqual(true, value);
+        }
+        [TestMethod]
+        public void TestCreateUser()
+        {
+            //Arange
+            MockRepository mocks = new MockRepository();
+            IUserLogic logic = mocks.Stub<IUserLogic>();
+            UserSM user1 = new UserSM();
+            using (mocks.Record())
+                //Act
+                logic.CreateUser(user1);
+                //Assert
+                verify(logic, times(1)).CreateUser(user1);
+
+        }
+        [TestMethod]
         public void TestGetUserById()
         {
             //Arange
-             MockRepository mocks = new MockRepository();
+            MockRepository mocks = new MockRepository();
             IUserLogic logic = mocks.Stub<IUserLogic>();
             int Id = 1;
             int secId = 2;
@@ -45,7 +106,7 @@ namespace UnitUserLogicTest
             User.Username = "Abin";
             UserSM secUser = new UserSM();
             secUser.UserId = 2;
-            secUser.Username="Cody";
+            secUser.Username = "Cody";
             using (mocks.Record())
             {
                 SetupResult.For(logic.GetUserById(Id)).Return(User);
@@ -56,8 +117,5 @@ namespace UnitUserLogicTest
             //Assert
             Assert.AreEqual("Abin", mockUser.Username);
         }
-       [TestMethod]
-    public 
     }
 }
-
