@@ -260,9 +260,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Views\PowerUser\" />
+<<<<<<< HEAD
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\User\" />
+=======
+    <Folder Include="Views\PowerUser\" />
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

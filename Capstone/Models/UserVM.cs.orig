@@ -14,9 +14,12 @@ namespace Capstone.Models
 
         [Required]
         [Display(Name = "username")]
-       [StringLength(50, MinimumLength = 3)]
+        [StringLength(50, MinimumLength = 3)]
         public string username { get; set; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
         [Required]
         [Display(Name = "password")]
         [StringLength(32, MinimumLength = 4)]
@@ -43,10 +46,17 @@ namespace Capstone.Models
 
         [Range(7, int.MaxValue, ErrorMessage = "Please enter valid zipcode")]
         public int zipcode { get; set; }
+<<<<<<< HEAD
+        
+
+        public static UserSM Map(UserVM human) 
+     {
+=======
 
 
         public static UserSM Map(UserVM human)
-     {
+        {
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
             UserSM hm = new UserSM();
             hm.UserId = human.userId;
             hm.Username = human.username;
@@ -61,8 +71,13 @@ namespace Capstone.Models
             hm.Zipcode = human.zipcode;
             return hm;
         }
+<<<<<<< HEAD
       
+        public static UserVM Map(UserSM human) 
+=======
+
         public static UserVM Map(UserSM human)
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
         {
             UserVM hm = new UserVM();
             hm.userId = human.UserId;
@@ -78,7 +93,11 @@ namespace Capstone.Models
             hm.zipcode = human.Zipcode;
             return hm;
         }
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
         public static List<UserSM> Map(List<UserVM> Users)
         {
             List<UserSM> people = new List<UserSM>();
@@ -88,8 +107,13 @@ namespace Capstone.Models
             }
             return people;
         }
+<<<<<<< HEAD
     
+        public static List<UserVM> Map(List<UserSM> Users) 
+=======
+
         public static List<UserVM> Map(List<UserSM> Users)
+>>>>>>> 9005e291df595482bc3b35c2df8bc7d2b265b463
         {
             List<UserVM> people = new List<UserVM>();
             foreach (UserSM User in Users)
@@ -98,6 +122,6 @@ namespace Capstone.Models
             }
             return people;
         }
-    
+
     }
 }
