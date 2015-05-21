@@ -37,6 +37,33 @@ namespace HelpConsciousness.Controllers
                 return View();
             }
         }
+
+        // GET: User/Edit/5
+        public ActionResult Edit(int id)
+        {
+            UserVM user = UserVM.Map(userLogic.GetUserById(id));
+            //Session["EditId"] = user.UserId;
+            return View(user);
+        }
+
+        // POST: User/Edit/5
+        [HttpPost]
+        public ActionResult Edit(UserVM user, int id) //Edits a User
+        {
+            try
+            {
+                //user.UserId = (int)Session["EditId"];
+                user.UserId = id;
+                user.Password = UserVM.Map(userLogic.GetUserById(id)).Password;
+                userLogic.UpdateUser(UserVM.Map(user));
+                return RedirectToAction("Index");
+            }
+            catch (Exception r)
+            {
+                return View();
+            }
+        }
+
         // GET: User/Login
 
         public ActionResult Login()
@@ -45,27 +72,28 @@ namespace HelpConsciousness.Controllers
         }
 
         // POST: User/Login
-        [HttpPost]
+        [HttpPost] //data annotation
         public ActionResult Login(UserVM user)
         {
             UserVM tempUser = UserVM.Map(userLogic.GetUser(UserVM.Map(user)));
             if (userLogic.Login(UserVM.Map(tempUser)))
             {
-                Session["userId"] = tempUser.userId;
-                Session["username"] = tempUser.username;
-                Session["user"] = tempUser.user;
-                Session["poweruser"] = tempUser.poweruser;
-                Session["admin"] = tempUser.admin;
-                ViewBag.User = tempUser.username;
-                if (tempUser.user == true)
+                Session["userId"] = tempUser.UserId;
+                Session["role"] = tempUser.SecLvl;
+                //ViewBag.user = tempUser.username; <- what do ?
+                if(tempUser.SecLvl == null)
+                {
+                    return RedirectToAction("Index", "Welcome");
+                }
+                else if (tempUser.SecLvl == 1)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else if (tempUser.poweruser == true)
+                else if (tempUser.SecLvl == 2)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                else if (tempUser.admin == true)
+                else if (tempUser.SecLvl == 3)
                 {
                     return RedirectToAction("Index", "Admin");
                 }

@@ -13,8 +13,8 @@ namespace DAL
         List<GuestDM> Read(SqlParameter[] parameters, string statement);
         List<GuestDM> GetAllGuests();
         void CreateGuest(GuestDM guest);
-        void deleteGuestById(String id);
+        void DeleteGuestById(String id);
         void UpdateGuest(GuestDM guest);
-        GuestDM getGuestById(String id);
+        GuestDM GetGuestById(String id);
     }
 }

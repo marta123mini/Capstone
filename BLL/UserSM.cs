@@ -13,11 +13,12 @@ namespace BLL
         public string Password { get; set; }
         public bool User { get; set; }
         public bool Poweruser { get; set; }
-        public bool Admin { get; set; }
+        public bool Admin { get; set; } 
         public string Street1 { get; set; }
         public string Street2 { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int Zipcode { get; set; }
+        public int SecLvl { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace BLL
         /// <returns>List of UserSM</returns>
         public List<UserSM> GetUsers() //Creates UserList
         {
-            return Map(userData.GetUsers());
+            return Map(userData.GetAllUsers());
         }
         /// <summary>
         /// Converts UserDM to UserSM for use on the Logic Layer
@@ -140,14 +140,15 @@ namespace BLL
 
                     if (tempUser.Password == user.Password)
                     {
-                        logs.LogError("Event", "User was successfully able to Login", "Class:UserLogic, Method::Login");
+                        setRole(tempUser);
+                        logs.LogError("Event","User was successfully able to Login","Class:UserLogic,Method:Login");
                         return true;
                     }
                 }
             }
             catch (Exception a)
             {
-                logs.LogError("Error", "User was unable to Login", "Class:UserLogic, Method:Login");
+                logs.LogError("Error","User was unable to Login","Class:UserLogic,Method:Login");
             }
             return false;
         }
@@ -165,12 +166,12 @@ namespace BLL
                     user.Password = hash.GetHash(user.Password);
                     user.Username = "Username";
                     userData.CreateUser(Map(user));
-                    logs.LogError("Event", "a new user has been been added to database", "Class:UserLogic,Method:CreateUser");
+                    logs.LogError("Event","A new user has been been added to database","Class:UserLogic,Method:CreateUser");
                 }
             }
             catch (Exception d)
             {
-                logs.LogError("Error", "A new user has not been added to the database", "Class:UserLogic,Method:CreateUser");
+                logs.LogError("Error","A new user has not been added to the database","Class:UserLogic,Method:CreateUser");
             }
         }
         /// <summary>
@@ -182,11 +183,11 @@ namespace BLL
             try
             {
                 userData.UpdateUser(Map(user));
-                logs.LogError("Event", "User was successfully able to update", "Class:UserLogic, Method:UpdateUser");
+                logs.LogError("Event","User was successfully able to update","Class:UserLogic,Method:UpdateUser");
             }
             catch (Exception c)
             {
-                logs.LogError("Error", "User was unable to update", "Class:UserLogic, Method:UpdateUser");
+                logs.LogError("Error","User was unable to update","Class:UserLogic,Method:UpdateUser");
             }
         }
         /// <summary>
@@ -198,11 +199,11 @@ namespace BLL
             try
             {
                 userData.DeleteUserById(id.ToString());
-                logs.LogError("Event ", "User was able to remove an user", "Class:UserLogic, Method:DeleteUser");
+                logs.LogError("Event","User was able to be removed","Class:UserLogic, Method:DeleteUser");
             }
             catch (Exception b)
             {
-                logs.LogError("Error ", "User was unable to remove an user", "Class:UserLogic, Method:DeleteUser");
+                logs.LogError("Error","User was unable to be removed","Class:UserLogic, Method:DeleteUser");
             }
         }
         /// <summary>
@@ -229,6 +230,21 @@ namespace BLL
                     user.Password = hash.GetHash(pass.NewPassword);
                     userData.UpdateUser(Map(user));
                 }
+            }
+        }
+        public void setRole(UserSM tempUser)
+        {
+            if(tempUser.User == true)
+            {
+                tempUser.SecLvl = 1;
+            }
+            else if (tempUser.Poweruser == true) 
+            {
+                tempUser.SecLvl = 2;
+            } 
+            else if (tempUser.Admin == true)
+            {
+                tempUser.SecLvl = 3;
             }
         }
     }

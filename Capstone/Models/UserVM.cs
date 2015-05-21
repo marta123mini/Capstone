@@ -10,72 +10,76 @@ namespace Capstone.Models
 {
     public class UserVM
     {
-        public int userId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
-        [Display(Name = "username")]
+        [Display(Name = "Username")]
        [StringLength(50, MinimumLength = 3)]
-        public string username { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        [Display(Name = "password")]
+        [Display(Name = "Password")]
         [StringLength(32, MinimumLength = 4)]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).*$", ErrorMessage = "You must have at least one Uppercase and a special character.")]
-        public string password { get; set; }
+        public string Password { get; set; }
 
-        public bool user { get; set; }
+        public bool User { get; set; }
 
-        public bool poweruser { get; set; }
+        public bool Poweruser { get; set; }
 
-        public bool admin { get; set; }
+        public bool Admin { get; set; }
 
         [StringLength(50, MinimumLength = 3)]
-        public string street1 { get; set; }
+        public string Street1 { get; set; }
 
-        public string street2 { get; set; }
+        public string Street2 { get; set; }
 
         [StringLength(20, MinimumLength = 3)]
-        public string city { get; set; }
+        public string City { get; set; }
 
         [StringLength(2, MinimumLength = 2)]
-        public string state { get; set; }
+        public string State { get; set; }
 
         [Range(7, int.MaxValue, ErrorMessage = "Please enter valid zipcode")]
-        public int zipcode { get; set; }
+        public int Zipcode { get; set; }
+
+        public int SecLvl { get; set; }
 
 
         public static UserSM Map(UserVM human)
      {
             UserSM hm = new UserSM();
-            hm.UserId = human.userId;
-            hm.Username = human.username;
-            hm.Password = human.password;
-            hm.User = human.user;
-            hm.Poweruser = human.poweruser;
-            hm.Admin = human.admin;
-            hm.Street1 = human.street1;
-            hm.Street2 = human.street2;
-            hm.City = human.city;
-            hm.State = human.state;
-            hm.Zipcode = human.zipcode;
+            hm.UserId = human.UserId;
+            hm.Username = human.Username;
+            hm.Password = human.Password;
+            hm.User = human.User;
+            hm.Poweruser = human.Poweruser;
+            hm.Admin = human.Admin;
+            hm.Street1 = human.Street1;
+            hm.Street2 = human.Street2;
+            hm.City = human.City;
+            hm.State = human.State;
+            hm.Zipcode = human.Zipcode;
+            hm.SecLvl = human.SecLvl;
             return hm;
         }
       
         public static UserVM Map(UserSM human)
         {
             UserVM hm = new UserVM();
-            hm.userId = human.UserId;
-            hm.username = human.Username;
-            hm.password = human.Password;
-            hm.user = human.User;
-            hm.poweruser = human.Poweruser;
-            hm.admin = human.Admin;
-            hm.street1 = human.Street1;
-            hm.street2 = human.Street2;
-            hm.city = human.City;
-            hm.state = human.State;
-            hm.zipcode = human.Zipcode;
+            hm.UserId = human.UserId;
+            hm.Username = human.Username;
+            hm.Password = human.Password;
+            hm.User = human.User;
+            hm.Poweruser = human.Poweruser;
+            hm.Admin = human.Admin;
+            hm.Street1 = human.Street1;
+            hm.Street2 = human.Street2;
+            hm.City = human.City;
+            hm.State = human.State;
+            hm.Zipcode = human.Zipcode;
+            hm.SecLvl = human.SecLvl;
             return hm;
         }
        
@@ -98,6 +102,5 @@ namespace Capstone.Models
             }
             return people;
         }
-    
     }
 }

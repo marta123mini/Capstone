@@ -105,7 +105,7 @@ namespace Capstone.Controllers
 
         // POST: Guest/Delete/5
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteGuest(int id)
+        public ActionResult Delete(int id)
         {
             try
             {

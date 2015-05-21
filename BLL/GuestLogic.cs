@@ -27,19 +27,19 @@ namespace BLL
         }
         public GuestSM GetGuestById(int id)
         {
-            return Map(guestData.getGuestById(id.ToString()));
+            return Map(guestData.GetGuestById(id.ToString()));
         }
-        public void CreateGuest (GuestSM guest)
+        public void CreateGuest(GuestSM guest)
         {
             try
             {
                 guestData.CreateGuest(Map(guest));
-                logs.LogError("Event", "a new Guest has been been added to database", "Class:GuestLogic,Method:CreateGuest");
+                logs.LogError("Event","A new guest has been been added to database","Class:GuestLogic,Method:CreateGuest");
 
             }
             catch (Exception d)
             {
-                logs.LogError("Error","A new user has not been added to the database", "Class:UserLogic,Method:CreateUser");
+                logs.LogError("Error","A new guest has not been added to the database","Class:GuestLogic,Method:CreateGuest");
             }
         }
         public void UpdateGuest(GuestSM guest)
@@ -47,11 +47,11 @@ namespace BLL
             try
             {
                 guestData.UpdateGuest(Map(guest));
-                logs.LogError("Event", "Guest was successfully able to update", "Class:GuestLogic, Method:UpdateGuest");
+                logs.LogError("Event","Guest was successfully able to update","Class:GuestLogic,Method:UpdateGuest");
             }
             catch
             {
-                logs.LogError("Error", "Guest was unable  to update", "Class:GuestLogic, Method:UpdateGuest");
+                logs.LogError("Error","Guest was unsucessfully able to update","Class:GuestLogic,Method:UpdateGuest");
             }
         }
 
@@ -59,12 +59,12 @@ namespace BLL
         {
             try
             {
-                guestData.deleteGuestById(id.ToString());
-                logs.LogError("Event ","Guest was able to remove a guest","Class:GuestLoic, Method:DeleteGuestById");
+                guestData.DeleteGuestById(id.ToString());
+                logs.LogError("Event","Guest was able to remove a guest","Class:GuestLoic,Method:DeleteGuestById");
             }
             catch
             {
-                logs.LogError("Error ", "Guest was unable to remove a guest", "Class:GuestLoic, Method:DeleteGuestById");
+                logs.LogError("Error","Guest was unable to remove a guest","Class:GuestLoic,Method:DeleteGuestById");
 
             }
         }

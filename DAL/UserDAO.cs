@@ -13,7 +13,7 @@ namespace DAL
     {
         private ISQLDAO dataWriter;
         private ILoggerIO logs;
-        private string connectionString = @"Server=.\SQLEXPRESS;Database = GuestLists;Trusted_Connection=True;";
+        private string connectionString = @"Server=.\SQLEXPRESS;Database = GuestList;Trusted_Connection=True;";
 
         public UserDAO(ILoggerIO log)
         {
@@ -40,7 +40,7 @@ namespace DAL
                     while (data.Read())
                     {
                         UserDM user = new UserDM();
-                        user.UserId = data["UserId"].ToString();
+                        user.UserId = data["Id"].ToString();
                         user.Username = data["Username"].ToString();
                         user.Password = data["Password"].ToString();
                         user.Admin = data["Admin"].ToString();
@@ -49,16 +49,16 @@ namespace DAL
                         user.Street2 = data["street2"].ToString();
                         user.City = data["City"].ToString();
                         user.State = data["State"].ToString();
-                        user.Zipcode = data["ZipCode"].ToString();
+                        user.Zipcode = data["Zipcode"].ToString();
                         people.Add(user);
                     }
                     return people;
                 }
             }
         }
-        public List<UserDM> GetUsers()
+        public List<UserDM> GetAllUsers()
         {
-            return Read(null, "GetUsers");
+            return Read(null, "GetAllUsers");
         }
         public void CreateUser(UserDM user)
         {
@@ -71,10 +71,8 @@ namespace DAL
                 new SqlParameter("@Street1",user.Street1),
                 new SqlParameter("@Street2",user.Street2),
                 new SqlParameter("@City",user.City),
-               new SqlParameter("@State",user.State),
-               new SqlParameter("@Zip",user.Zipcode)
-
-
+                new SqlParameter("@State",user.State),
+                new SqlParameter("@Zipcode",user.Zipcode)
             };
             dataWriter.Write(parameters, "CreateUser");
             logs.LogError("Event", "An User has been added to the database", "Class:UserDAO, Method:CreateUser");
@@ -84,41 +82,41 @@ namespace DAL
             SqlParameter[] parameters = new SqlParameter[]{
                 new SqlParameter("@UserId", id)
             };
-            dataWriter.Write(parameters, "DeleteUser");
+            dataWriter.Write(parameters, "DeleteUserById");
             logs.LogError("Event", "An User has been removed from the database", "Class:UserDAO, Method:DeleteUserById");
         }
         public void UpdateUser(UserDM user)
         {
             SqlParameter[] parameters = new SqlParameter[]{
                new SqlParameter("@Username", user.Username),
-                new SqlParameter("@Password", user.Password),
-                new SqlParameter("@Admin", user.Admin),
-                new SqlParameter("@Poweruser", user.Poweruser),
-                new SqlParameter("@User", user.User),
-                new SqlParameter("@Street1",user.Street1),
-                new SqlParameter("@Street2",user.Street2),
-                new SqlParameter("@City",user.City),
+               new SqlParameter("@Password", user.Password),
+               new SqlParameter("@Admin", user.Admin),
+               new SqlParameter("@Poweruser", user.Poweruser),
+               new SqlParameter("@User", user.User),
+               new SqlParameter("@Street1",user.Street1),
+               new SqlParameter("@Street2",user.Street2),
+               new SqlParameter("@City",user.City),
                new SqlParameter("@State",user.State),
-               new SqlParameter("@Zip",user.Zipcode),
+               new SqlParameter("@Zipcode",user.Zipcode),
                new SqlParameter("@Id", user.UserId) 
             }; 
-            dataWriter.Write(parameters, "UpdateUser");
+            dataWriter.Write(parameters, "UpdateUserById");
             logs.LogError("Event", "An User has been updated", "Class:UserDAO, Method: UpdateUser");
         }
         public UserDM GetUserById(string id)
         {
             SqlParameter[] parameters = new SqlParameter[]{
-                new SqlParameter("@UserId", id)
+                new SqlParameter("@Id", id)
             };
             return Read(parameters, "GetUserById").SingleOrDefault();
         }
         public UserDM GetUser(UserDM veriUser)
         {
             SqlParameter[] parameters = new SqlParameter[]{
-                new SqlParameter("@UserName", veriUser.Username)
+                new SqlParameter("@Username", veriUser.Username)
                ,new SqlParameter("@Password", veriUser.Password)
             };
-            return Read(parameters, "GetUser").SingleOrDefault();
+            return Read(parameters, "GetUserById").SingleOrDefault();
         }
     }
 }

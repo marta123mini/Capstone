@@ -11,7 +11,7 @@ namespace DAL
     {
         void SetDataWriter(ISQLDAO dataWriter);
         List<UserDM> Read(SqlParameter[] parameters, string statement);
-        List<UserDM> GetUsers();
+        List<UserDM> GetAllUsers();
         void CreateUser(UserDM user);
         void DeleteUserById(string id);
         void UpdateUser(UserDM user);

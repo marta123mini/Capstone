@@ -1,104 +1,103 @@
-﻿using System;
+﻿using ApplicationLogger;
+using BLL;
+using DAL;
+using Capstone.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BLL;
-using DAL;
-using ApplicationLogger;
-using Capstone.Models;
 
-namespace Capstone.Controllers
+namespace HelpConsciousness.Controllers
 {
     public class AdminController : Controller
     {
         public IUserLogic adminLogic = new UserLogic(new UserDAO(new LoggerIO()), new SQLDAO(), new LoggerIO(), new Hashing());
-        // GET: Admin
+
+        // GET: User
         public ActionResult Index()
         {
             List<UserVM> users = UserVM.Map(adminLogic.GetUsers());
             return View(users);
         }
 
-        // GET: Admin/Details/5
+        // GET: User/Details/5
         public ActionResult Details(int id)
         {
             UserVM user = UserVM.Map(adminLogic.GetUserById(id));
-            ViewBag.UserId = user.userId;
-            ViewBag.UserName = user.username;
-            ViewBag.Admin = user.admin;
-            ViewBag.User = user.user;
-            ViewBag.PowerUser = user.poweruser;
-            ViewBag.Street1 = user.street1;
-            ViewBag.Street2 = user.street2;
-            ViewBag.City = user.city;
-            ViewBag.State = user.state;
-            ViewBag.Zipcode = user.zipcode;
+            ViewBag.userId = user.UserId;
+            ViewBag.username = user.Username;
+            ViewBag.password = user.Password;
+            ViewBag.secLvl = user.SecLvl;
             return View(user);
         }
 
-        // GET: Admin/Create
+        // GET: User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Create
+        // POST: User/Create
         [HttpPost]
-        public ActionResult Create(UserVM user)
+        public ActionResult Create(UserVM user) //Creates a user
         {
             try
             {
-                adminLogic.CreateUser(UserVM.Map(user));    
-                return RedirectToAction("Index","Admin");
+                adminLogic.CreateUser((UserVM.Map(user)));
+                return RedirectToAction("Index", "Admin");
             }
-            catch
+            catch (Exception s)
             {
                 return View();
             }
         }
 
-        // GET: Admin/Edit/5
+        // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
             UserVM user = UserVM.Map(adminLogic.GetUserById(id));
+            //Session["EditId"] = user.UserId;
             return View(user);
         }
 
-        // POST: Admin/Edit/5
+        // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, UserVM user)
+        public ActionResult Edit(UserVM user, int id) //Edits a User
         {
             try
             {
-                user.userId = id;
-                user.password = UserVM.Map(adminLogic.GetUserById(id)).password;
+                //user.UserId = (int)Session["EditId"];
+                user.UserId = id;
+                user.Password = UserVM.Map(adminLogic.GetUserById(id)).Password;
                 adminLogic.UpdateUser(UserVM.Map(user));
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception r)
             {
                 return View();
             }
         }
 
-        // GET: Admin/Delete/5
+        // GET: User/Delete/5
         public ActionResult Delete(int id)
         {
             UserVM user = UserVM.Map(adminLogic.GetUserById(id));
-            return View();
+            //Session["DeleteId"] = user.UserId;
+            return View(user);
         }
 
-        // POST: Admin/Delete/5
+        // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, UserVM user)
+        public ActionResult Delete(UserVM user, int id) //Deletes User
         {
             try
             {
+                // TODO: Add delete logic here
                 adminLogic.DeleteUserById(id);
-                return RedirectToAction("Index","Ad");
+                return RedirectToAction("Index", "Admin");
             }
-            catch
+            catch (Exception z)
             {
                 return View();
             }

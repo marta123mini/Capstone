@@ -10,7 +10,7 @@ namespace DAL
 {
     public class SQLDAO:ISQLDAO
     {
-        private string connectionString = @"Server=.\SQLEXPRESS;Database=GuestLists;Trusted_Connection=True;";
+        private string connectionString = @"Server=.\SQLEXPRESS;Database=GuestList;Trusted_Connection=True;";
         public int Write(SqlParameter[] parameters, string statement)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -20,7 +20,7 @@ namespace DAL
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddRange(parameters);
                     connection.Open();
-                    return Convert.ToInt32( command.ExecuteScalar()); //returns the number of rows affected
+                    return Convert.ToInt32(command.ExecuteScalar()); //returns the number of rows affected
                 }
             }
         }
