@@ -24,7 +24,16 @@ namespace Capstone.Controllers
         // GET: Guest/Details/5
         public ActionResult Details(int id)
         {
-            return View(guestLogic.GetGuestById(id));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GuestSM guest = guestLogic.GetGuestById(id);
+            if (guest == null)
+            {
+                return HttpNotFound();
+            }
+            return View(guest);
         }
 
         // GET: Guest/Create

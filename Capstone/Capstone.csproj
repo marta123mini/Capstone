@@ -251,12 +251,12 @@
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\LogOut.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\GuestList\Details.cshtml" />
     <Content Include="Views\GuestList\Index.cshtml" />
     <Content Include="Views\GuestList\Create.cshtml" />
     <Content Include="Views\GuestList\Edit.cshtml" />
     <Content Include="Views\GuestList\Delete.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

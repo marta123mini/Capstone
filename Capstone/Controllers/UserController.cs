@@ -78,8 +78,8 @@ namespace HelpConsciousness.Controllers
             UserVM tempUser = UserVM.Map(userLogic.GetUser(UserVM.Map(user)));
             if (userLogic.Login(UserVM.Map(tempUser)))
             {
-                Session["userId"] = tempUser.UserId;
-                Session["role"] = tempUser.SecLvl;
+                Session["UserId"] = tempUser.UserId;
+                Session["Role"] = tempUser.SecLvl;
                 //ViewBag.user = tempUser.username; <- what do ?
                 if(tempUser.SecLvl == null)
                 {
@@ -104,7 +104,7 @@ namespace HelpConsciousness.Controllers
         // GET: User/Login
         public ActionResult LogOut()
         {
-            Session["userId"] = null;
+            Session["UserId"] = null;
             return RedirectToAction("Welcome", "Home");
         }
     }
